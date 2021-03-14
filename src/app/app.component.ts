@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent {
 
   title = 'ecommerce-sophia-new';
 
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor(private spinner: NgxSpinnerService) {}
 
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class AppComponent {
       this.spinner.hide();
     }, 5000);
 
-    window.scroll(0, 0);
+    window.scroll(0,0);
   }
 
 }

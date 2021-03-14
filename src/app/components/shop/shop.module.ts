@@ -15,15 +15,21 @@ import { SharedModule } from '../shared/shared.module';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HomeTwoComponent } from './home-two/home-two.component';
+import { HomeThreeComponent } from './home-three/home-three.component';
 // Import the library
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 import { ProductCarouselComponent } from './../shop/home/product-carousel/product-carousel.component';
 import { from } from 'rxjs';
+import { ProductCarouselTwoComponent } from './home-two/product-carousel-two/product-carousel-two.component';
+import { ProductCarouselThreeComponent } from './home-three/product-carousel-three/product-carousel-three.component';
 import { BrandsComponent } from './widgets/brands/brands.component';
 import { CategoriesComponent } from './widgets/categories/categories.component';
 import { PopularProductsComponent } from './widgets/popular-products/popular-products.component';
+import { HomeFourComponent } from './home-four/home-four.component';
 import { ProductZoomComponent } from './products/product-details/product-zoom/product-zoom.component';
+import { HomeFiveComponent } from './home-five/home-five.component';
 
 
 @NgModule({
@@ -37,11 +43,18 @@ import { ProductZoomComponent } from './products/product-details/product-zoom/pr
     ProductDialogComponent,
     ProductLeftSidebarComponent,
     ProductVerticalComponent,
+    HomeTwoComponent,
+    HomeThreeComponent,
+
     ProductCarouselComponent,
+    ProductCarouselTwoComponent,
+    ProductCarouselThreeComponent,
     BrandsComponent,
     CategoriesComponent,
     PopularProductsComponent,
+    HomeFourComponent,
     ProductZoomComponent,
+    HomeFiveComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +65,7 @@ import { ProductZoomComponent } from './products/product-details/product-zoom/pr
     ReactiveFormsModule,
     FlexLayoutModule,
     NgxPaginationModule,
-    NgxImageZoomModule,// <-- Add this line
+    NgxImageZoomModule,
 
   ],
   exports: [
@@ -60,9 +73,11 @@ import { ProductZoomComponent } from './products/product-details/product-zoom/pr
     ProductZoomComponent
 
   ],
+
   entryComponents: [
     ProductDialogComponent,
     ProductZoomComponent
   ],
 })
+
 export class ShopModule { }

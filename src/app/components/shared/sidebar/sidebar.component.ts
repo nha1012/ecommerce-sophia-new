@@ -20,11 +20,10 @@ import { Router } from '@angular/router';
   ]
 })
 export class SidebarComponent implements OnInit {
-  expanded: boolean;
   @HostBinding('attr.aria-expanded') ariaExpanded = null;
   @Input() item: SidenavMenu;
   @Input() depth: number;
-
+  expanded: boolean;
   constructor(private sidenavMenuService: SidebarMenuService, public router: Router) {
     if (this.depth === undefined) {
       this.depth = 0;
