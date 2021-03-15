@@ -8,7 +8,6 @@ import { ProductDialogComponent } from '../../products/product-dialog/product-di
 import { CartService } from 'src/app/components/shared/services/cart.service';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { WishlistService } from 'src/app/components/shared/services/wishlist.service';
-import { ProductServiceApi } from 'src/app/components/shared/services/product/product.service';
 
 @Component({
   selector: 'app-product-carousel',
@@ -27,11 +26,9 @@ export class ProductCarouselComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     private productService: ProductService,
-    private productServiceApi: ProductServiceApi,
     private wishlistService: WishlistService) { }
 
   ngOnInit() {
-    this.productServiceApi.getMany().subscribe(value => console.log(value))
   }
   ngAfterViewInit() {
     this.config = {
