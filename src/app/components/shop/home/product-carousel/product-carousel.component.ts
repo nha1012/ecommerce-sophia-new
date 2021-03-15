@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Product } from 'src/app/modals/product.model';
-import {  SwiperDirective } from 'ngx-swiper-wrapper';
+import { SwiperDirective } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { ProductDialogComponent } from '../../products/product-dialog/product-di
 import { CartService } from 'src/app/components/shared/services/cart.service';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { WishlistService } from 'src/app/components/shared/services/wishlist.service';
+import { ProductServiceApi } from 'src/app/components/shared/services/product/product.service';
 
 @Component({
   selector: 'app-product-carousel',
@@ -15,14 +16,24 @@ import { WishlistService } from 'src/app/components/shared/services/wishlist.ser
   styleUrls: ['./product-carousel.component.sass']
 })
 export class ProductCarouselComponent implements OnInit {
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-input-rename
   @Input('product') product: Array<Product> = [];
   public config: SwiperConfigInterface = {};
-  constructor(private dialog: MatDialog, private router: Router, private cartService: CartService, private productService: ProductService, private wishlistService: WishlistService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(
+    private dialog: MatDialog,
+    private router: Router,
+    private cartService: CartService,
+    private productService: ProductService,
+    private productServiceApi: ProductServiceApi,
+    private wishlistService: WishlistService) { }
 
   ngOnInit() {
+    this.productServiceApi.getMany().subscribe(value => console.log(value))
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.config = {
       observer: true,
       slidesPerView: 5,
@@ -54,31 +65,31 @@ export class ProductCarouselComponent implements OnInit {
   }
 
 
-  public openProductDialog(product){
+  public openProductDialog(product) {
     let dialogRef = this.dialog.open(ProductDialogComponent, {
-        data: product,
-        panelClass: 'product-dialog',
+      data: product,
+      panelClass: 'product-dialog',
     });
     dialogRef.afterClosed().subscribe(product => {
-      if(product){
+      if (product) {
         this.router.navigate(['/products', product.id, product.name]);
       }
     });
   }
 
-   // Add to cart
-   public addToCart(product: Product,  quantity: number = 1) {
-    this.cartService.addToCart(product,quantity);
+  // Add to cart
+  public addToCart(product: Product, quantity: number = 1) {
+    this.cartService.addToCart(product, quantity);
     console.log(product, quantity);
   }
 
-   // Add to wishlist
-   public addToWishlist(product: Product) {
+  // Add to wishlist
+  public addToWishlist(product: Product) {
     this.wishlistService.addToWishlist(product);
- }
+  }
 
-    // Add to compare
-    public addToCompare(product: Product) {
-      this.productService.addToCompare(product);
-   }
+  // Add to compare
+  public addToCompare(product: Product) {
+    this.productService.addToCompare(product);
+  }
 }

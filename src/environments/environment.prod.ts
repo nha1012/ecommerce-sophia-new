@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  rest: 'https://api-quan-ly-cua-hang.herokuapp.com',
 };
